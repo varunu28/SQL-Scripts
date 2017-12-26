@@ -1,0 +1,13 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE gradeDistribution()
+BEGIN
+	SELECT RES.Name, RES.ID
+        FROM (SELECT Name, ID, 
+          (Midterm1*0.25 + Midterm2*0.25 + Final*0.5) AS op1,
+          (Midterm1*0.5 + Midterm2*0.5) AS op2,
+          Final AS op3
+          FROM Grades
+          ) AS RES
+        WHERE op3 > op1 AND op3 > op2
+        ORDER BY LEFT(Name,3), ID;
+END

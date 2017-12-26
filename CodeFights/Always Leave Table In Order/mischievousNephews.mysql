@@ -1,0 +1,13 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE mischievousNephews()
+BEGIN
+	SELECT weekday, mischief_date, author, title
+        FROM (SELECT WEEKDAY(mischief_date) AS weekday, mischief_date, author, title,
+          CASE 
+              WHEN author='Huey' THEN 0
+              WHEN author='Dewey' THEN 1
+              ELSE 2 
+          END AS priority
+          FROM mischief) AS derived
+        ORDER BY weekday,priority, mischief_date, title;
+END

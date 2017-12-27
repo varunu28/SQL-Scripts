@@ -1,0 +1,11 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE suspectsInvestigation2()
+BEGIN
+    SELECT id, name, surname 
+    FROM Suspect
+    WHERE id NOT IN 
+    (SELECT id
+    FROM Suspect
+    WHERE height > 170 AND name LIKE "B%" AND surname LIKE "Gre_n")
+    ORDER BY id;
+END

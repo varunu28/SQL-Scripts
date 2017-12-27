@@ -1,0 +1,14 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE newsSubscribers()
+BEGIN
+     SELECT DISTINCT subscriber
+     FROM (
+        SELECT subscriber 
+        FROM full_year 
+        WHERE INSTR(newspaper, 'Daily') > 0
+        UNION
+        SELECT subscriber 
+        FROM half_year 
+        WHERE INSTR(newspaper, 'Daily') > 0) AS nws
+    ORDER BY SUBSTRING_INDEX(subscriber, ' ', 1);
+END

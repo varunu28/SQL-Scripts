@@ -1,0 +1,10 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE movieDirectors()
+BEGIN
+	SELECT mv.director
+    FROM (SELECT * 
+          FROM moviesInfo 
+          WHERE year > 2000) AS mv
+    GROUP BY mv.director
+    HAVING SUM(mv.oscars) > 2;
+END

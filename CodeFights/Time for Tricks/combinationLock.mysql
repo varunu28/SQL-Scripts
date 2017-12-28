@@ -1,0 +1,7 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE combinationLock()
+BEGIN
+    SELECT CEIL(ROUND(EXP(SUM(LOG(COALESCE(CHAR_LENGTH(characters))))), 2)) 
+    AS combinations
+    FROM discs;
+END

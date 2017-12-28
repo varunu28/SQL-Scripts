@@ -1,0 +1,9 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE booksCatalogs()
+BEGIN
+    SELECT DISTINCT a.name AS author
+    FROM (SELECT 
+          SUBSTRING_INDEX(ExtractValue(xml_doc, '//catalog//book//author'), ' ', 2) AS name
+          FROM catalogs) AS a
+    ORDER BY a.name;
+END

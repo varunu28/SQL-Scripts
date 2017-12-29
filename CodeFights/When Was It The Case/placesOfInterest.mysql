@@ -1,0 +1,22 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE placesOfInterest()
+BEGIN
+    SELECT 
+        c.country, 
+        SUM(c.adventure_park) AS adventure_park, 
+        SUM(c.golf) AS golf,
+        SUM(c.river_cruise) AS river_cruise,
+        SUM(c.kart_racing) AS kart_racing
+    FROM (SELECT country,
+          CASE WHEN leisure_activity_type = 'Adventure park' THEN number_of_places
+          ELSE 0 END as adventure_park,
+          CASE WHEN leisure_activity_type = 'Golf' THEN  number_of_places 
+          ELSE 0 END as golf,
+          CASE WHEN leisure_activity_type = 'River cruise' THEN number_of_places 
+          ELSE 0 END as river_cruise,
+          CASE WHEN leisure_activity_type = 'Kart racing' THEN number_of_places 
+          ELSE 0 END as kart_racing
+          FROM countryActivities
+         ) AS c
+    GROUP BY c.country;
+END

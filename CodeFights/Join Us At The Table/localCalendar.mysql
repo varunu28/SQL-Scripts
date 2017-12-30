@@ -1,0 +1,11 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE localCalendar()
+BEGIN
+    SELECT event_id, 
+    IF(hours=12, CONCAT(DATE_FORMAT(IF(HOUR(date + INTERVAL timeshift MINUTE)>12,(date + INTERVAL timeshift MINUTE) - INTERVAL 12 HOUR, date + INTERVAL timeshift MINUTE),'%Y-%m-%d %H:%i'), 
+        IF(HOUR(date + INTERVAL timeshift MINUTE)>=12, ' PM', ' AM')), 
+       DATE_FORMAT(date + INTERVAL timeshift MINUTE, '%Y-%m-%d %H:%i')) AS formatted_date
+    FROM events JOIN settings ON events.user_id=settings.user_id
+    ORDER BY event_id;
+END
+

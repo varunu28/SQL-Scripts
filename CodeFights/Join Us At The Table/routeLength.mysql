@@ -1,0 +1,7 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE routeLength()
+BEGIN
+    SELECT ROUND(SUM(SQRT(POW((c1.x-c2.x),2)+POW((c1.y-c2.y),2))), 9) AS total
+    FROM cities c1, cities c2
+    WHERE c1.id = c2.id-1;
+END

@@ -1,0 +1,16 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE alarmClocks()
+BEGIN
+    DROP TABLE IF EXISTS Temp;
+    CREATE TABLE IF NOT EXISTS Temp(alarm_date DATETIME);
+    
+    SET @date_start = (SELECT input_date FROM userInput);
+    SET @date_end = (SELECT YEAR(input_date) FROM userInput);
+
+    WHILE @date_start <= @date_end DO
+        INSERT INTO Temp VALUES (@date_start);
+        SET @date_start = DATE_ADD(@date_start, INTERVAL 7 DAY);
+    END WHILE;
+    
+    SELECT * FROM Temp;
+END

@@ -1,0 +1,9 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE pastEvents()
+BEGIN
+    SELECT name, event_date 
+    FROM Events
+    WHERE DATEDIFF((SELECT MAX(event_date) FROM Events), event_date) <= 7 
+    AND DATEDIFF((SELECT MAX(event_date) FROM Events), event_date) >= 1
+    ORDER BY event_date DESC;
+END

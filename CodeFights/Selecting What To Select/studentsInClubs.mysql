@@ -1,0 +1,6 @@
+CREATE PROCEDURE studentsInClubs()
+    SELECT * FROM students
+    WHERE EXISTS (
+        SELECT club_id FROM clubs WHERE club_id=id
+    )
+    ORDER BY students.id;

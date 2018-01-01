@@ -1,0 +1,8 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE emptyDepartments()
+BEGIN
+    SELECT dep_name 
+    FROM departments 
+    WHERE (SELECT COUNT(1) FROM employees WHERE department=departments.id) = 0
+    ORDER BY departments.id;
+END

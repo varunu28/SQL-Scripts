@@ -103,7 +103,7 @@ For every match involving 'POL', show the matchid, date and the number of goals 
 SELECT matchid,mdate, COUNT(mdate)
   FROM game JOIN goal ON matchid = id 
   WHERE (team1 = 'POL' OR team2 = 'POL')
-  GROUP BY mdate, matchid
+  GROUP BY mdate, matchid ORDER BY matchid ASC
 
 # 12
 /*
